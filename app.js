@@ -59,8 +59,29 @@ client.connect()
             client.close();
         }) */
 
-        dbo.collection('uscensus').insertMany(stats).then(function(res) {
+        /* dbo.collection('uscensus').insertMany(stats).then(function(res) {
             console.log("Number of documents inserted:" + res.insertedCount);
+            client.close();
+        }) */
+
+        var additionalStats =[
+            {
+                'city': 'Pacoima', 
+                'zip': '91331', 
+                'state': 'CA', 
+                'income': '60360',
+                'age': '33'
+            },
+            {
+                'city': 'Ketchikan', 
+                'zip': '99950', 
+                'state': 'AK', 
+                'income': '00000',
+                'age': '00'
+            }
+        ]
+        dbo.collection('uscensus').insertMany(additionalStats).then(function(res) {
+            console.log(`Inserted ${res.insertedCount} new records`);
             client.close();
         })
     })
