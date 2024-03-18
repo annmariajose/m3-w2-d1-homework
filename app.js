@@ -100,11 +100,21 @@ client.connect()
                 client.close();
             }) */
 
-        var query = { state: 'AK' }
+        /* var query = { state: 'AK' }
         var newvalues = {$set: {income: '38910', age: '46'}};
         dbo.collection('uscensus').updateOne(query, newvalues).then(function() {
             console.log("Alaska income and age updated");
             client.close();
-        })
+        }) */
+
+        var sortbystate = {state: 1}
+        dbo.collection('uscensus').find()
+            .sort(sortbystate)
+            .toArray()
+            .then(items => {
+                console.log(`Successfully sorted ${items.length} documents.`)
+                console.log(items);
+                client.close();
+            })
     })
     .catch(error => console.log('Failed to connect', error))
