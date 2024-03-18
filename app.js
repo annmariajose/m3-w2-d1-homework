@@ -85,10 +85,19 @@ client.connect()
             client.close();
         }) */
 
-        var query = {city: 'Corona', state: 'NY'}
+        /* var query = {city: 'Corona', state: 'NY'}
         dbo.collection('uscensus').findOne(query).then(function(res) {
             console.log(`Corona NY zip code: ${res.zip}`);
             client.close();
-        })
+        }) */
+
+        var query = {state: 'CA'}
+        dbo.collection('uscensus').find(query)
+            .toArray()
+            .then(items => {
+                console.log("Income for all cities in California:");
+                console.log(items)
+                client.close();
+            })
     })
     .catch(error => console.log('Failed to connect', error))
