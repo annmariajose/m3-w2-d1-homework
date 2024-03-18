@@ -50,7 +50,13 @@ var stats =[
 
 client.connect()
     .then(() => {
-        console.log('Database created');
-        client.close();
+        //console.log('Database created');
+        //client.close();
+
+        var dbo = client.db('statsdb');
+        dbo.createCollection('uscensus').then(function() {
+            console.log("Collection created");
+            client.close();
+        })
     })
     .catch(error => console.log('Failed to connect', error))
