@@ -1,3 +1,8 @@
+const { error } = require('console');
+const { MongoClient } = require('mongodb')
+
+const client = new MongoClient('mongodb://127.0.0.1:27017/nodemongo')
+
 var stats =[
     {
         'city': 'San Juan', 
@@ -42,3 +47,10 @@ var stats =[
         'age': '35'
     }
 ]
+
+client.connect()
+    .then(() => {
+        console.log('Database created');
+        client.close();
+    })
+    .catch(error => console.log('Failed to connect', error))
