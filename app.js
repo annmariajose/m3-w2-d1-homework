@@ -64,7 +64,7 @@ client.connect()
             client.close();
         }) */
 
-        var additionalStats =[
+        /* var additionalStats =[
             {
                 'city': 'Pacoima', 
                 'zip': '91331', 
@@ -82,6 +82,12 @@ client.connect()
         ]
         dbo.collection('uscensus').insertMany(additionalStats).then(function(res) {
             console.log(`Inserted ${res.insertedCount} new records`);
+            client.close();
+        }) */
+
+        var query = {city: 'Corona', state: 'NY'}
+        dbo.collection('uscensus').findOne(query).then(function(res) {
+            console.log(`Corona NY zip code: ${res.zip}`);
             client.close();
         })
     })
