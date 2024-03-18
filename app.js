@@ -54,8 +54,13 @@ client.connect()
         //client.close();
 
         var dbo = client.db('statsdb');
-        dbo.createCollection('uscensus').then(function() {
+        /* dbo.createCollection('uscensus').then(function() {
             console.log("Collection created");
+            client.close();
+        }) */
+
+        dbo.collection('uscensus').insertMany(stats).then(function(res) {
+            console.log("Number of documents inserted:" + res.insertedCount);
             client.close();
         })
     })
