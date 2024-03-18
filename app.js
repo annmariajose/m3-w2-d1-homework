@@ -91,13 +91,20 @@ client.connect()
             client.close();
         }) */
 
-        var query = {state: 'CA'}
+        /* var query = {state: 'CA'}
         dbo.collection('uscensus').find(query)
             .toArray()
             .then(items => {
                 console.log("Income for all cities in California:");
                 console.log(items)
                 client.close();
-            })
+            }) */
+
+        var query = { state: 'AK' }
+        var newvalues = {$set: {income: '38910', age: '46'}};
+        dbo.collection('uscensus').updateOne(query, newvalues).then(function() {
+            console.log("Alaska income and age updated");
+            client.close();
+        })
     })
     .catch(error => console.log('Failed to connect', error))
